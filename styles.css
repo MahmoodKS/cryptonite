@@ -9,3 +9,6 @@
 .symbol {
     font-weight: bold;
 }
+
+.toggle, .toggle-on, .toggle-off { border-radius: 20px; }
+.toggle-handle { border-radius: 100%; background-color: white; }

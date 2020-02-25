@@ -1,3 +1,4 @@
 const CACHE = {
     coinsInfo: {},
+    selectedCoins: {},
 };

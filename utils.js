@@ -32,6 +32,26 @@ const coinCollapseOnShowHandler = (event) => {
     }
 };
 
+const onSwitchChangeHandler = (event) => {
+    const $self = $(event.target);
+    const id = $self.data('id');
+    const isOn = $self.prop('checked');
+
+    if (isOn) {
+        CACHE.selectedCoins[id] = true;
+    }
+    else {
+        delete CACHE.selectedCoins[id];
+    }
+
+    if (Object.keys(CACHE.selectedCoins).length >= 5) {
+        $('.toggle.off .switches').attr('disabled', true);
+    }
+    else {
+        $('.toggle .switches').prop('disabled', false);
+    }
+};
+
 const addCoinsToDom = (coins) => {
     const $row = $('<div>', { class: 'row' });
 
@@ -66,6 +86,12 @@ const addCoinsToDom = (coins) => {
             })
             .data('id', id)
             .on('show.bs.collapse', coinCollapseOnShowHandler);
+        const $switch = $('<input>', {
+            class: 'switches',
+            type: 'checkbox'
+        })
+        .data('id', id)
+        .on('change', onSwitchChangeHandler);
 
         $symbol.text(symbol.toUpperCase());
         $name.text(name);
@@ -80,6 +106,8 @@ const addCoinsToDom = (coins) => {
 
         $leftCol.append($leftContent);
 
+        $rightCol.append($switch);
+
         $content.append($leftCol);
         $content.append($rightCol);
 
@@ -89,4 +117,11 @@ const addCoinsToDom = (coins) => {
     });
 
     $(SELECTORS.CURRENCIES).append($row);
+
+    // After this line, everything is in the DOM
+    $('.switches').bootstrapToggle({
+        onstyle: 'success',
+        offstyle: 'info',
+        checked: true,
+    });
 };
