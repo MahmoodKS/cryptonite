@@ -2,15 +2,34 @@ const coinCollapseOnShowHandler = (event) => {
     const $content = $(event.target);
     const id = $content.data('id');
 
-    $.getJSON(`${VIEW_API_ENDPOINT}${id}`, (response) => {
-        const { image: { thumb }, market_data: { current_price: { eur, ils, usd } } } = response;
+    if (CACHE.coinsInfo[id]) {
+        handler(CACHE.coinsInfo[id]);
+    }
+    else {
+        $.getJSON(`${VIEW_API_ENDPOINT}${id}`, (response) => {
+            const { image: { thumb }, market_data: { current_price: { eur, ils, usd } } } = response;
+
+            CACHE.coinsInfo[id] = {
+                thumb,
+                eur,
+                ils,
+                usd,
+            };
+
+            handler(CACHE.coinsInfo[id]);
+        });
+    }
+
+    function handler(info) {
+        const { thumb, eur, ils, usd } = info;
         const $img = $('<img>', { src: thumb });
 
+        $content.empty();
         $content.append($img);
         $content.append(eur);
         $content.append(ils);
         $content.append(usd);
-    });
+    }
 };
 
 const addCoinsToDom = (coins) => {
