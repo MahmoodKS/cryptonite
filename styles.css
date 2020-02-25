@@ -1,0 +1,11 @@
+#home {
+    margin: 40px;
+}
+
+.currency {
+    padding: 0 20px 20px 0;
+}
+
+.symbol {
+    font-weight: bold;
+}
