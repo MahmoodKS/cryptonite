@@ -1,5 +1,9 @@
-#home {
+#myTab {
     margin: 40px;
+}
+
+#myTabContent {
+    margin: 0 55px 0 55px;
 }
 
 .currency {
