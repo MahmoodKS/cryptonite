@@ -88,9 +88,10 @@ const addCoinsToDom = (coins) => {
             .on('show.bs.collapse', coinCollapseOnShowHandler);
         const $switch = $('<input>', {
             class: 'switches',
-            type: 'checkbox'
+            type: 'checkbox',
         })
         .data('id', id)
+        .prop('checked', CACHE.selectedCoins[id])
         .on('change', onSwitchChangeHandler);
 
         $symbol.text(symbol.toUpperCase());
@@ -116,7 +117,7 @@ const addCoinsToDom = (coins) => {
         $row.append($coin);
     });
 
-    $(SELECTORS.CURRENCIES).append($row);
+    $(SELECTORS.CURRENCIES).empty().append($row);
 
     // After this line, everything is in the DOM
     $('.switches').bootstrapToggle({
@@ -124,4 +125,19 @@ const addCoinsToDom = (coins) => {
         offstyle: 'info',
         checked: true,
     });
+};
+
+const doSearch = (val) => {
+    if (!val) {
+        addCoinsToDom(CACHE.coins);
+    }
+    else {
+        const filteredCoins = CACHE.coins.filter((coin) => {
+            return coin.id.includes(val) ||
+                coin.name.includes(val) ||
+                coin.symbol.includes(val);
+        });
+    
+        addCoinsToDom(filteredCoins);
+    }
 };
