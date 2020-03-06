@@ -49,7 +49,7 @@ const onSwitchChangeHandler = (event) => {
         delete CACHE.selectedCoins[id];
     }
 
-    if (Object.keys(CACHE.selectedCoins).length >= 3) {
+    if (Object.keys(CACHE.selectedCoins).length >= MAX_COINS) {
         $('.toggle.off .switches').attr('disabled', true);
         $('#exampleModal').modal('show');
     }

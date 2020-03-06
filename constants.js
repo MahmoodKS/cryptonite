@@ -1,6 +1,6 @@
 const API_ENDPOINT = 'https://api.coingecko.com/api/v3/coins/list';
 const VIEW_API_ENDPOINT = 'https://api.coingecko.com/api/v3/coins/';
-const MAX_COINS = 3;
+const MAX_COINS = 5;
 
 const SELECTORS = {
     HOME: '#home',
