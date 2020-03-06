@@ -1,5 +1,9 @@
 $(document).ready(() => {
-    $.getJSON(API_ENDPOINT, (response) => {
+    let promise = $.getJSON(API_ENDPOINT);
+
+    $(SELECTORS.CURRENCIES).empty().append(createSpinner());
+
+    promise.then(response => {
         const coins = response.slice(0, 100);
 
         CACHE.coins = coins;
@@ -11,5 +15,9 @@ $(document).ready(() => {
         const val = $search.val();
 
         doSearch(val);
+    });
+
+    $('#go-to-live-report').click(() => {
+        $('#live-report-tab').tab('show');
     });
 });

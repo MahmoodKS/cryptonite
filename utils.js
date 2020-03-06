@@ -2,6 +2,8 @@ const coinCollapseOnShowHandler = (event) => {
     const $content = $(event.target);
     const id = $content.data('id');
 
+    $content.empty().append(createSpinner());
+    
     if (CACHE.coinsInfo[id]) {
         handler(CACHE.coinsInfo[id]);
     }
@@ -23,12 +25,15 @@ const coinCollapseOnShowHandler = (event) => {
     function handler(info) {
         const { thumb, eur, ils, usd } = info;
         const $img = $('<img>', { src: thumb });
+        const $usd = $('<div>').html(`<b>USD</b>: ${usd}`);
+        const $eur = $('<div>').html(`<b>EUR</b>: ${eur}`);
+        const $ils = $('<div>').html(`<b>ILS</b>: ${ils}`);
 
         $content.empty();
         $content.append($img);
-        $content.append(eur);
-        $content.append(ils);
-        $content.append(usd);
+        $content.append($usd);
+        $content.append($eur);
+        $content.append($ils);
     }
 };
 
@@ -44,8 +49,9 @@ const onSwitchChangeHandler = (event) => {
         delete CACHE.selectedCoins[id];
     }
 
-    if (Object.keys(CACHE.selectedCoins).length >= 5) {
+    if (Object.keys(CACHE.selectedCoins).length >= 3) {
         $('.toggle.off .switches').attr('disabled', true);
+        $('#exampleModal').modal('show');
     }
     else {
         $('.toggle .switches').prop('disabled', false);
@@ -63,8 +69,8 @@ const addCoinsToDom = (coins) => {
             class: `${SELECTORS.CURRENCY.replace('.', '')} col-xs-12 col-sm-6 col-md-4 col-lg-3`,
         });
         const $content = $('<div>', { class: 'row' });
-        const $leftCol = $('<div>', { class: 'col-lg-6' });
-        const $rightCol = $('<div>', { class: 'col-lg-6' });
+        const $leftCol = $('<div>', { class: 'col-lg-8' });
+        const $rightCol = $('<div>', { class: 'col-lg-4' });
         const $leftContent = $('<div>', { class: 'row' });
         const $symbol = $('<div>', { class: 'col-lg-12 symbol' });
         const $name = $('<div>', { class: 'col-lg-12' });
@@ -141,3 +147,10 @@ const doSearch = (val) => {
         addCoinsToDom(filteredCoins);
     }
 };
+
+const createSpinner = () => {
+    const $spinner = $('<div>', {class: 'spinner-container'})
+    $spinner.html(LOADING_SPINNER);
+
+    return $spinner;
+}

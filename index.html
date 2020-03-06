@@ -13,47 +13,91 @@
     <title>Cryptonite</title>
   </head>
   <body>
-    
-  <ul class="nav nav-pills" id="myTab" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-        aria-selected="true">Home</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#live-report" role="tab" aria-controls="live-report"
-        aria-selected="false">Live Report</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about"
-        aria-selected="false">About</a>
-    </li>
-  </ul>
+    <ul class="nav nav-pills" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+          aria-selected="true">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="live-report-tab" data-toggle="tab" href="#live-report" role="tab" aria-controls="live-report"
+          aria-selected="false">Live Report</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about"
+          aria-selected="false">About</a>
+      </li>
+    </ul>
 
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-      <div class="row">
-        <div class="col-lg-6 col-sm-1"></div>
-        <div class="col-lg-6 col-sm-11">
-          <div class="row">
-            <div class="col-sm-8 col-lg-9">
-              <div class="form-group">
-                <input type="text" class="form-control" id="search" placeholder="Seach">
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="row">
+          <div class="col-lg-6 col-sm-1"></div>
+          <div class="col-lg-6 col-sm-11">
+            <div class="row">
+              <div class="col-sm-8 col-lg-9">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search" placeholder="Seach">
+                </div>
               </div>
-            </div>
-            <div class="col-sm-4 col-lg-3">
-              <button type="button" id="search-btn" class="btn btn-outline-primary">Search</button>
+              <div class="col-sm-4 col-lg-3">
+                <button type="button" id="search-btn" class="btn btn-outline-primary">Search</button>
+              </div>
             </div>
           </div>
         </div>
+        <div id="currencies">
+        
+        </div>
       </div>
-      <div id="currencies">
-      
+      <div class="tab-pane fade" id="live-report" role="tabpanel" aria-labelledby="live-report-tab">
+        <!-- TODO:  -->
+        <ul id="selected-coins">
+          
+        </ul>
+      </div>
+      <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">
+        <h1>ABOUT</h1>
+        <div>
+          <img src="" />
+        </div>
+        <p>
+          <b>Name:</b> Aya Ghaith
+        </p>
+        <p>
+          <b>Major:</b> Computer Networks & Data Security Administration
+        </p>
+        <p>
+          <b>College:</b> Azreile college
+        </p>
+        <div>
+          <h2>Project Description</h2>
+          <p>
+            the project has made to show a 100 currencies with their details such as their signs and their value in USD,ERU,ILS in
+            the HOME page.
+            every currency has a switch and by turning the switch to 'ON' mode for 5 currencies they will move to 'live-report'
+            and they will be shown there as selected coins . 
+          </p>
+        </div>
       </div>
     </div>
-    <div class="tab-pane fade" id="live-report" role="tabpanel" aria-labelledby="live-report-tab">...</div>
-    <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">...</div>
-  </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Redirect to Live Reports Page?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Stay</button>
+            <button id="go-to-live-report" type="button" class="btn btn-primary" data-dismiss="modal">Go to Live Report</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
