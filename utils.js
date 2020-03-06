@@ -154,3 +154,16 @@ const createSpinner = () => {
 
     return $spinner;
 }
+
+const addCoinsToLiveReport = () => {
+    const coins = Object.keys(CACHE.selectedCoins);
+
+    $('#selected-coins').empty();
+    
+    if (coins.length) {
+        coins.map(coin => $('#selected-coins').append($('<li>').text(coin)));
+    }
+    else {
+        $('#selected-coins').text('Please select some currencies')
+    }
+}

@@ -20,4 +20,6 @@ $(document).ready(() => {
     $('#go-to-live-report').click(() => {
         $('#live-report-tab').tab('show');
     });
+
+    $('#live-report-tab').on('shown.bs.tab', addCoinsToLiveReport);
 });
